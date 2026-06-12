@@ -19,14 +19,14 @@ export default function Header() {
 
   return (
     <header className="sticky top-0 z-10 border-b border-faint bg-paper/85 backdrop-blur">
-      <div className="mx-auto flex max-w-5xl items-center justify-between gap-4 px-6 py-4">
+      <div className="mx-auto flex max-w-5xl flex-wrap items-center justify-between gap-x-6 gap-y-1 px-6 py-4">
         <Link
           href="/"
-          className="font-display text-lg font-medium tracking-tight text-ink"
+          className="font-display text-lg font-medium italic tracking-tight text-ink transition-colors hover:text-accent"
         >
           {t.nav.siteTitle}
         </Link>
-        <nav className="flex items-center gap-5 text-sm">
+        <nav className="no-scrollbar flex items-center gap-5 overflow-x-auto whitespace-nowrap text-sm">
           {links.map((l) => {
             const active = pathname === l.href;
             return (
@@ -35,9 +35,9 @@ export default function Header() {
                 href={l.href}
                 aria-current={active ? "page" : undefined}
                 className={
-                  "transition-colors " +
+                  "py-1 transition-colors " +
                   (active
-                    ? "text-ink"
+                    ? "text-ink underline decoration-accent decoration-[1.5px] underline-offset-[7px]"
                     : "text-muted hover:text-ink")
                 }
               >
@@ -45,7 +45,7 @@ export default function Header() {
               </Link>
             );
           })}
-          <span className="h-4 w-px bg-faint" aria-hidden />
+          <span className="h-4 w-px shrink-0 bg-faint" aria-hidden />
           <LanguageToggle />
         </nav>
       </div>

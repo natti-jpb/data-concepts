@@ -9,6 +9,9 @@ export interface Strings {
     aiData: string;
     causation: string;
     langLabel: string;
+    previous: string;
+    next: string;
+    backToIndex: string;
   };
   home: {
     heroKicker: string;
@@ -138,6 +141,9 @@ const pt: Strings = {
     aiData: "Dados & IA",
     causation: "Causalidade",
     langLabel: "Idioma",
+    previous: "Anterior",
+    next: "Próximo",
+    backToIndex: "Todos os conceitos",
   },
   home: {
     heroKicker: "Aprenda explorando",
@@ -324,6 +330,9 @@ const en: Strings = {
     aiData: "Data & AI",
     causation: "Causation",
     langLabel: "Language",
+    previous: "Previous",
+    next: "Next",
+    backToIndex: "All concepts",
   },
   home: {
     heroKicker: "Learn by exploring",

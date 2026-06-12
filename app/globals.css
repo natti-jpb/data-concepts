@@ -58,3 +58,111 @@ body {
   background: var(--accent);
   color: var(--paper);
 }
+
+:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 3px;
+  border-radius: 2px;
+}
+
+/* ── Page entrance ──────────────────────────────────────────────── */
+@keyframes page-rise {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+main {
+  animation: page-rise 0.55s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  main {
+    animation: none;
+  }
+}
+
+/* ── Range sliders: hairline track, ink-ring thumb ──────────────── */
+input[type="range"] {
+  -webkit-appearance: none;
+  appearance: none;
+  height: 20px;
+  background: transparent;
+  cursor: pointer;
+}
+
+input[type="range"]::-webkit-slider-runnable-track {
+  height: 2px;
+  border-radius: 1px;
+  background: var(--faint);
+}
+
+input[type="range"]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  margin-top: -6px;
+  height: 14px;
+  width: 14px;
+  border-radius: 50%;
+  background: var(--surface);
+  border: 1.5px solid var(--ink);
+  box-shadow: 0 1px 2px rgb(0 0 0 / 0.08);
+  transition:
+    background-color 0.15s ease,
+    transform 0.15s ease;
+}
+
+input[type="range"]:hover::-webkit-slider-thumb {
+  background: var(--ink);
+}
+
+input[type="range"]:active::-webkit-slider-thumb {
+  background: var(--ink);
+  transform: scale(1.2);
+}
+
+input[type="range"]::-moz-range-track {
+  height: 2px;
+  border-radius: 1px;
+  background: var(--faint);
+}
+
+input[type="range"]::-moz-range-progress {
+  height: 2px;
+  border-radius: 1px;
+  background: var(--ink);
+}
+
+input[type="range"]::-moz-range-thumb {
+  height: 14px;
+  width: 14px;
+  border-radius: 50%;
+  background: var(--surface);
+  border: 1.5px solid var(--ink);
+  box-shadow: 0 1px 2px rgb(0 0 0 / 0.08);
+  transition:
+    background-color 0.15s ease,
+    transform 0.15s ease;
+}
+
+input[type="range"]:hover::-moz-range-thumb {
+  background: var(--ink);
+}
+
+input[type="range"]:active::-moz-range-thumb {
+  background: var(--ink);
+  transform: scale(1.2);
+}
+
+/* ── Utilities ──────────────────────────────────────────────────── */
+@utility no-scrollbar {
+  scrollbar-width: none;
+  &::-webkit-scrollbar {
+    display: none;
+  }
+}

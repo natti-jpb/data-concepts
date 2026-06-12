@@ -3,6 +3,7 @@
 import Link from "next/link";
 
 interface ConceptCardProps {
+  index: string;
   title: string;
   description: string;
   badge: string;
@@ -10,6 +11,7 @@ interface ConceptCardProps {
 }
 
 export default function ConceptCard({
+  index,
   title,
   description,
   badge,
@@ -22,7 +24,8 @@ export default function ConceptCard({
         (href ? "border-ink/25 hover:border-ink" : "border-faint opacity-55")
       }
     >
-      <div className="flex items-center justify-between">
+      <div className="flex items-baseline justify-between">
+        <span className="font-mono text-xs tabular-nums text-muted">{index}</span>
         <span
           className={
             "text-[11px] uppercase tracking-[0.16em] " +
@@ -31,11 +34,6 @@ export default function ConceptCard({
         >
           {badge}
         </span>
-        {href && (
-          <span className="text-muted transition-transform group-hover:translate-x-0.5">
-            →
-          </span>
-        )}
       </div>
       <h3
         className={
@@ -46,6 +44,14 @@ export default function ConceptCard({
         {title}
       </h3>
       <p className="text-sm leading-relaxed text-muted">{description}</p>
+      {href && (
+        <span
+          aria-hidden
+          className="mt-auto pt-2 text-muted transition-all duration-200 group-hover:translate-x-1 group-hover:text-accent"
+        >
+          →
+        </span>
+      )}
     </article>
   );
 
