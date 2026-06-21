@@ -20,8 +20,9 @@ const ThemeContext = createContext<ThemeValue | null>(null);
 const STORAGE_KEY = "dc-theme";
 
 /* Runs before paint (injected in <head>) so the chosen theme is applied to
-   <html> before the first render — no flash of the wrong palette. */
-export const themeScript = `(function(){try{var t=localStorage.getItem("${STORAGE_KEY}");if(t!=="light"&&t!=="dark"){t=matchMedia("(prefers-color-scheme: dark)").matches?"dark":"light";}document.documentElement.setAttribute("data-theme",t);}catch(e){}})();`;
+   <html> before the first render — no flash of the wrong palette.
+   Defaults to light; only a stored "dark" preference opts into dark. */
+export const themeScript = `(function(){try{var t=localStorage.getItem("${STORAGE_KEY}");document.documentElement.setAttribute("data-theme",t==="dark"?"dark":"light");}catch(e){}})();`;
 
 export function ThemeProvider({ children }: { children: ReactNode }) {
   // SSR-safe default; the real value is read from the DOM after mount, matching
@@ -30,13 +31,7 @@ export function ThemeProvider({ children }: { children: ReactNode }) {
 
   useEffect(() => {
     const stored = window.localStorage.getItem(STORAGE_KEY);
-    const initial: Theme =
-      stored === "light" || stored === "dark"
-        ? stored
-        : window.matchMedia("(prefers-color-scheme: dark)").matches
-          ? "dark"
-          : "light";
-    setThemeState(initial);
+    setThemeState(stored === "dark" ? "dark" : "light");
   }, []);
 
   const setTheme = (t: Theme) => {
