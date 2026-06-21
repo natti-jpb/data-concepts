@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Geist, Geist_Mono, Fraunces } from "next/font/google";
 import "./globals.css";
 import { LanguageProvider } from "@/lib/i18n";
+import { ThemeProvider, themeScript } from "@/lib/theme";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 
@@ -23,9 +24,9 @@ const fraunces = Fraunces({
 });
 
 export const metadata: Metadata = {
-  title: "Conceitos de Dados · Data Concepts",
+  title: "Data Concepts · Conceitos de Dados",
   description:
-    "Explicações interativas de conceitos de dados para startups · Interactive explanations of data concepts for startups.",
+    "Interactive explanations of data concepts for startups · Explicações interativas de conceitos de dados para startups.",
 };
 
 export default function RootLayout({
@@ -35,15 +36,21 @@ export default function RootLayout({
 }>) {
   return (
     <html
-      lang="pt"
+      lang="en"
+      suppressHydrationWarning
       className={`${geistSans.variable} ${geistMono.variable} ${fraunces.variable} h-full antialiased`}
     >
+      <head>
+        <script dangerouslySetInnerHTML={{ __html: themeScript }} />
+      </head>
       <body className="min-h-full flex flex-col font-sans">
-        <LanguageProvider>
-          <Header />
-          {children}
-          <Footer />
-        </LanguageProvider>
+        <ThemeProvider>
+          <LanguageProvider>
+            <Header />
+            {children}
+            <Footer />
+          </LanguageProvider>
+        </ThemeProvider>
       </body>
     </html>
   );

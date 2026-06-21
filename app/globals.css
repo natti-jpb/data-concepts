@@ -14,8 +14,21 @@
   --negative: #a8741b; /* not significant */
 }
 
+/* Dark palette. Applied on an explicit choice ([data-theme="dark"]), or by
+   the system preference unless the user has explicitly chosen light. */
+[data-theme="dark"] {
+  --paper: #16130d;
+  --surface: #1d1912;
+  --ink: #ece6da;
+  --muted: #9c9483;
+  --faint: #2c271d;
+  --accent: #a9b2ff;
+  --positive: #74cfa0;
+  --negative: #e0b274;
+}
+
 @media (prefers-color-scheme: dark) {
-  :root {
+  :root:not([data-theme="light"]) {
     --paper: #16130d;
     --surface: #1d1912;
     --ink: #ece6da;

@@ -20,9 +20,9 @@ const I18nContext = createContext<I18nValue | null>(null);
 const STORAGE_KEY = "dc-lang";
 
 export function LanguageProvider({ children }: { children: ReactNode }) {
-  // Server and first client render both use "pt" → no hydration mismatch.
+  // Server and first client render both use "en" → no hydration mismatch.
   // A stored preference is applied after mount via the effect below.
-  const [lang, setLangState] = useState<Lang>("pt");
+  const [lang, setLangState] = useState<Lang>("en");
 
   useEffect(() => {
     const stored = window.localStorage.getItem(STORAGE_KEY);

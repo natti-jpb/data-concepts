@@ -9,6 +9,9 @@ export interface Strings {
     aiData: string;
     causation: string;
     langLabel: string;
+    themeLabel: string;
+    lightMode: string;
+    darkMode: string;
     previous: string;
     next: string;
     backToIndex: string;
@@ -141,6 +144,9 @@ const pt: Strings = {
     aiData: "Dados & IA",
     causation: "Causalidade",
     langLabel: "Idioma",
+    themeLabel: "Tema",
+    lightMode: "Modo claro",
+    darkMode: "Modo escuro",
     previous: "Anterior",
     next: "Próximo",
     backToIndex: "Todos os conceitos",
@@ -330,6 +336,9 @@ const en: Strings = {
     aiData: "Data & AI",
     causation: "Causation",
     langLabel: "Language",
+    themeLabel: "Theme",
+    lightMode: "Light mode",
+    darkMode: "Dark mode",
     previous: "Previous",
     next: "Next",
     backToIndex: "All concepts",
